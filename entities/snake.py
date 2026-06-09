@@ -1,6 +1,6 @@
 import pygame
 from typing import List, Tuple
-from constants import (
+from core.constants import (
     GRID_SIZE,
     COLOR_SNAKE_HEAD,
     COLOR_SNAKE_BODY,

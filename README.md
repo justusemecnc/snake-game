@@ -17,13 +17,20 @@ A simple Python and Pygame snake game with menu, gameplay, pause, and game-over 
 
 ## Run locally
 
-1. Install the dependency:
+1. Clone the project:
+
+   ```bash
+   git clone https://github.com/justusemecnc/snake-game.git
+   cd snake-game
+   ```
+
+2. Install the dependency:
 
    ```bash
    pip install pygame
    ```
 
-2. Start the game:
+3. Start the game:
 
    ```bash
    python main.py

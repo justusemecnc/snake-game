@@ -1,7 +1,7 @@
 import pygame
 import random
 from typing import Tuple
-from constants import (
+from core.constants import (
     GRID_SIZE,
     COLOR_FOOD,
     PLAYFIELD_GRID_WIDTH,

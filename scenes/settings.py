@@ -1,26 +1,66 @@
-import pygame
-import sys
+import json
 import os
 from typing import Optional
+
+import pygame
+import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(__file__)), "ui"))
 
 from scene import Scene
 from label import Button, Label
-from constants import (
+from core.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
     COLOR_BACKGROUND,
     COLOR_TEXT,
     COLOR_BUTTON_HOVER,
     FONT_KENNEY_SQUARE,
+    SETTINGS_FILE,
+    DATA_DIR,
 )
 
-import importlib
 
-_settings_module = importlib.import_module("settings")
-Settings = _settings_module.Settings
+class Settings:
+
+    def __init__(self):
+
+        self.difficulty = "medium"
+        self.load()
+
+    def load(self) -> None:
+
+        os.makedirs(DATA_DIR, exist_ok=True)
+
+        if os.path.exists(SETTINGS_FILE):
+            try:
+                with open(SETTINGS_FILE, "r") as f:
+                    data = json.load(f)
+                    self.difficulty = data.get("difficulty", "medium")
+            except (json.JSONDecodeError, IOError):
+                self._create_defaults()
+        else:
+            self._create_defaults()
+
+    def save(self) -> None:
+
+        os.makedirs(DATA_DIR, exist_ok=True)
+
+        data = {"difficulty": self.difficulty}
+        with open(SETTINGS_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+
+    def _create_defaults(self) -> None:
+
+        self.difficulty = "medium"
+        self.save()
+
+    def set_difficulty(self, difficulty: str) -> None:
+
+        if difficulty in ("easy", "medium", "hard"):
+            self.difficulty = difficulty
+            self.save()
 
 
 class SettingsMenuScene(Scene):

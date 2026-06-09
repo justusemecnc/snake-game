@@ -3,13 +3,14 @@ import sys
 import os
 from typing import Dict
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "scenes"))
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(ROOT_DIR, "scenes"))
 
 from menu import MenuScene
 from gameplay import GameplayScene
 from pause import PauseScene
 from gameover import GameOverScene
-from settingsmenu import SettingsMenuScene
+from settings import SettingsMenuScene
 
 
 class Game:

@@ -1,6 +1,6 @@
 import json
 import os
-from constants import SCORES_FILE, DATA_DIR
+from core.constants import SCORES_FILE, DATA_DIR
 
 
 class HighScores:
@@ -47,4 +47,5 @@ class HighScores:
 
     def get(self) -> int:
 
+        self.load()
         return self.high_score

@@ -1,5 +1,7 @@
 import os
 
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
@@ -36,10 +38,10 @@ DIFFICULTY_SPEEDS = {
 }
 
 
-ASSET_DIR = os.path.join(os.path.dirname(__file__), "assets")
+ASSET_DIR = os.path.join(ROOT_DIR, "assets")
 FONT_DIR = os.path.join(ASSET_DIR, "fonts")
 UI_DIR = os.path.join(ASSET_DIR, "ui")
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+DATA_DIR = os.path.join(ROOT_DIR, "data")
 
 
 FONT_KENNEY_SQUARE = os.path.join(FONT_DIR, "Kenney Pixel Square.ttf")

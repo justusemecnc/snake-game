@@ -11,7 +11,7 @@ from scene import Scene
 from label import Label
 from snake import Snake
 from food import Food
-from constants import (
+from core.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
     COLOR_BACKGROUND,

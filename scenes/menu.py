@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(__file__)), "ui"
 
 from scene import Scene
 from label import Button, Label
-from constants import (
+from core.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
     COLOR_BACKGROUND,
@@ -16,7 +16,7 @@ from constants import (
     COLOR_BUTTON_HOVER,
     FONT_KENNEY_SQUARE,
 )
-from scores import HighScores
+from core.scores import HighScores
 
 
 class MenuScene(Scene):
@@ -32,6 +32,7 @@ class MenuScene(Scene):
         large_font = pygame.font.Font(FONT_KENNEY_SQUARE, 64)
         button_font = pygame.font.Font(FONT_KENNEY_SQUARE, 32)
         small_font = pygame.font.Font(FONT_KENNEY_SQUARE, 24)
+        self.high_score_font = small_font
 
         title_surface = large_font.render("SNAKE", True, COLOR_TEXT)
         title_x = (SCREEN_WIDTH - title_surface.get_width()) // 2
@@ -74,12 +75,22 @@ class MenuScene(Scene):
             COLOR_BUTTON_HOVER,
         )
 
-        high_score_text = f"HIGH SCORE: {self.high_scores.get()}"
-        high_score_width = small_font.size(high_score_text)[0]
         self.high_score_label = Label(
-            small_font,
-            high_score_text,
+            self.high_score_font,
+            "HIGH SCORE: 0",
             COLOR_TEXT,
+            SCREEN_WIDTH // 2,
+            SCREEN_HEIGHT - 100,
+        )
+        self._refresh_high_score_label()
+
+    def _refresh_high_score_label(self) -> None:
+
+        self.high_scores.load()
+        high_score_text = f"HIGH SCORE: {self.high_scores.get()}"
+        high_score_width = self.high_score_font.size(high_score_text)[0]
+        self.high_score_label.set_text(high_score_text)
+        self.high_score_label.set_position(
             SCREEN_WIDTH // 2 - high_score_width // 2,
             SCREEN_HEIGHT - 100,
         )
@@ -109,7 +120,7 @@ class MenuScene(Scene):
 
     def update(self) -> None:
 
-        pass
+        self._refresh_high_score_label()
 
     def draw(self, screen: pygame.Surface) -> None:
 

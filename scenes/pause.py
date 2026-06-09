@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(__file__)), "ui"
 
 from scene import Scene
 from label import Button, Label
-from constants import (
+from core.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
     COLOR_BACKGROUND,

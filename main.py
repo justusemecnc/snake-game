@@ -6,8 +6,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "scenes"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "entities"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "ui"))
 
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
-from game import Game
+from core.constants import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
+from core.game import Game
 
 
 def main() -> None:
